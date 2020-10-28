@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 using namespace std;
+class Passenger;
 class Route;
 class NodeR{
 public:
@@ -22,6 +23,7 @@ private:
     string ACity="0";
     double price;
     double coupon;
+    int restTicket;
     bool Full;
 
     NodeR* next=NULL;    //节点指针域
@@ -30,6 +32,7 @@ private:
 
 class Route{
 public:
+    friend class Passenger;
     Route(){
         head = NULL;
         length = 0;
@@ -41,9 +44,15 @@ public:
     void PrintOne(NodeR* ptr);
     void Add();
 
+    void Find();
     NodeR* FindFSN();
+    NodeR* UFindSN(string code);
     void FindCity();
     void FindCoupon();
+
+    bool JudgeBuy(NodeR* ptr,int num);
+    void ChangeNum(int num,NodeR* ptr);
+    void ChangeNumplus(int num,NodeR* ptr);
 
     void ChangeFlight();
 
@@ -78,8 +87,8 @@ void Route ::SetList() {
         cin>>p->price;
         cout<<"Coupon";
         cin>>p->coupon;
-        cout<<"Full?";
-        cin>>p->Full;
+        cout<<"Rest Ticket:";
+        cin>>p->restTicket;
 
 
         pre->next = p;
@@ -101,14 +110,15 @@ void Route ::SaveToFile() {
     NodeR* ptr = head->next;
 
     do{
+        out<<endl;
         out<<ptr->SN<<" ";
-        out<<ptr->DCity<<"->";
+        out<<ptr->DCity<<" ";
         out<<ptr->ACity<<" ";
         out<<ptr->OffTime<<" ";
         out<<ptr->LandTime<<" ";
         out<<ptr->price<<" ";
         out<<ptr->coupon<<" ";
-        out<<ptr->Full<<" ";
+        out<<ptr->restTicket<<" ";
 
         out<<endl;
 
@@ -140,7 +150,7 @@ void Route ::LoadFromFIle() {
         in>>p->LandTime;
         in>>p->price;
         in>>p->coupon;
-        in>>p->Full;
+        in>>p->restTicket;
 
         pre->next = p;
         pre = p;
@@ -163,6 +173,7 @@ void Route ::PrintList() {
         cout<<ptr->LandTime<<" ";
         cout<<ptr->price<<" ";
         cout<<ptr->coupon<<" ";
+        cout<<ptr->restTicket;
         //cout<<ptr->Full<<" ";
 
         ptr = ptr->next;
@@ -179,6 +190,7 @@ void Route ::PrintOne(NodeR *ptr) {
     cout<<ptr->LandTime<<" ";
     cout<<ptr->price<<" ";
     cout<<ptr->coupon<<" ";
+    cout<<ptr->restTicket;
     //cout<<ptr->Full<<" ";
 
     cout<<endl;
@@ -233,6 +245,37 @@ NodeR* Route ::FindFSN() {
 
     cout<<"##Can not find!##"<<endl;
 
+}
+
+void Route ::Find() {
+    cout<<"*********"<<endl;
+    int marker=1;
+    string key;
+    do{
+        cout<<"*****************"<<endl;
+        cout<<"1.SN"<<endl;
+        cout<<"2.City"<<endl;
+        cout<<"3.Coupon"<<endl;
+        cout<<"0.end"<<endl;
+        cout<<"*****************"<<endl;
+        cin>>marker;
+
+        switch (marker) {
+            case 1:
+                FindFSN();
+                break;
+
+            case 2:
+                FindCity();
+                break;
+
+            case 3:
+                FindCoupon();
+                break;
+
+
+        }
+    }while (marker!=0);
 }
 
 void Route ::FindCity() {
@@ -340,6 +383,36 @@ void Route ::ChangeFlight() {
 
 
     }
+}
+
+bool Route ::JudgeBuy(NodeR* ptr,int num) {
+    if(ptr->restTicket>num || ptr->restTicket==num){
+        return 1;
+    } else{
+        return 0;
+    }
+}
+
+NodeR* Route ::UFindSN(string code) {
+    NodeR* ptr=head->next;
+
+    do{
+        if(ptr->SN==code){
+            return ptr;
+        }
+
+        ptr = ptr->next;
+    }while (ptr!=NULL);
+
+    return NULL;
+}
+
+void Route ::ChangeNum(int num,NodeR* ptr) {
+    ptr->restTicket = ptr->restTicket-num;
+}
+
+void Route ::ChangeNumplus(int num, NodeR *ptr) {
+    ptr->restTicket = ptr->restTicket+num;
 }
 
 #endif //HOMEWORK_CLASSEXP_1_HEADER_ROUTE_H

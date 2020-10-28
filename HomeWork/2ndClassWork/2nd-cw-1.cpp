@@ -50,205 +50,170 @@ private:
     Node* top=NULL;
 };
 
-int main(){
-    int marker;
-    /*SeqStack seq;
+int main() {
+    SeqStack seq;       //测试顺序栈数据
     seq.Push();
     seq.AllOutFromStack();
-    seq.Push();*/
+    cout<<"FULL?:"<<seq.JudgeFull()<<endl;
+    seq.Pop();
+    seq.Pop();
+    seq.AllOutFromStack();
+    cout<<"FULL?:"<<seq.JudgeFull()<<endl;
 
-    do{
-        cout<<"*****************************"<<endl;    //do循环负责用户界面
-        cout<<"1.显示链表内容"<<endl;
-        cout<<"2.插入元素"<<endl;
-        cout<<"3.删除元素"<<endl;
-        cout<<"4.获得当前链表长度"<<endl;
-        cout<<"5.按序号查找"<<endl;
-        cout<<"6.按值查找"<<endl;
-        cout<<"0.Exit"<<endl;
-        cout<<endl;
 
-        /*int n=0;
-        cin>>marker;
-        switch (marker) {
-            case 1:
 
-                break;
+    ChainStack ch;          //测试链式栈数据
+    ch.Push();
+    ch.ShowOutFromStack();
+    ch.Pop();
+    ch.ShowOutFromStack();
+    cout<<"empty?:"<<ch.JudgeEmpty()<<endl;
 
-            case 2:
 
-                break;
+        return 0;
+}
+//顺序栈
+    SeqStack::SeqStack()
+    {
+        array = new char[MAXSIZE];
+        top = -1;
 
-            case 3:
+    }       //顺序栈函数实现
 
-                break;
+    void SeqStack::Push(char element) { //压入栈
+        if (JudgeFull() == 1) {
+            cout << "***Stack Full***" << endl;
+            return;
+        }
+        if (element == '0') {
+            char enter;
+            cout << "Input to the stack:(enter 0 to end)" << endl;
+            do {
+                cin >> enter;
+                if (enter != '0') {
+                    ++top;
+                } else {
+                    return;
+                }
+                array[top] = enter;
 
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
+            } while (enter != '0');
+        } else {
 
         }
-
-    }while (marker != 0);*/
-
-    ChainStack ch;
-    ch.Push();
-    //ch.Pop();
-    ch.ShowOutFromStack();
-
-
-    return 0;
-}
-
-SeqStack ::SeqStack() {
-    array = new char[MAXSIZE];
-    top=-1;
-
-}       //顺序栈函数实现
-
-void SeqStack ::Push(char element) {
-    if(JudgeFull()==1){
-        cout<<"***Stack Full***"<<endl;
-        return;
     }
-    if(element=='0'){
-        char enter;
-        cout<<"Input to the stack:(enter 0 to end)"<<endl;
-        do{
-            cin>>enter;
-            if(enter!='0'){
-                ++top;
-            }else{
-                return;
-            }
-            array[top] = enter;
 
-        }while (enter!='0');
-    } else{
-
+    char SeqStack::Pop() {  //弹出栈
+        char r = array[top];
+        array[top] = NULL;
+        top--;
+        return r;
     }
-}
 
-char SeqStack ::Pop() {
-    char r = array[top];
-    array[top]=NULL;
-    top--;
-    return r;
-}
+    void SeqStack::AllOutFromStack() {
+        if (top == -1) {
+            cout << "***Empty Stack***" << endl;
+            return;
+        }
+        cout << "--------" << endl;
+        for (int i = top; i >= 0; i--) {
+            cout << array[i] << endl;
+        }
+        cout << "--------" << endl;
+    }
 
-void SeqStack ::AllOutFromStack() {
-    if(top==-1){
-        cout<<"***Empty Stack***"<<endl;
-        return;
+    bool SeqStack::JudgeEmpty() {   //判断栈空
+        if (top == -1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-    cout<<"--------"<<endl;
-    for(int i=top;i>=0;i--){
-        cout<<array[i]<<endl;
-    }
-    cout<<"--------"<<endl;
-}
 
-bool SeqStack ::JudgeEmpty() {
-    if(top==-1){
-        return 0;
-    } else{
-        return 1;
+    bool SeqStack::JudgeFull() {    //判断栈满
+        if (top == MAXSIZE - 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-}
-
-bool SeqStack ::JudgeFull() {
-    if(top==MAXSIZE-1){
-        return 1;
-    } else{
-        return 0;
-    }
-}
 
 //--------------------------------------------------------------//
+//链式栈
+    ChainStack::ChainStack()
+    {
+        head = NULL;
+        Maxlength = 10;
+    }   //链式栈函数实现
 
-ChainStack ::ChainStack() {
-    head=NULL;
-    Maxlength = 10;
-}   //链式栈函数实现
-
-void ChainStack ::List() {
-    Node* p = new Node;
-    p->data = '1';
-    head = p;
-    //delete p;
-}
-
-void ChainStack ::Push(char element) {
-    char enter;
-    if(element == '0'){
-        cout<<"Input to the stack:(enter 0 to end)"<<endl;
-        do{
-            cin>>enter;
-            if(enter=='0'){
-                return;
-            }
-            Node* ptr = new Node;
-            ptr->data = enter;
-            ptr->next = head;
-            head = ptr;
-            top=head;
-            //delete ptr;
-            count++;
-
-        }while (enter!='0');
-
-
-
+    void ChainStack::List() {
+        Node *p = new Node;
+        p->data = '1';
+        head = p;
+        //delete p;
     }
-}
 
-void ChainStack ::ShowOutFromStack() {
-    Node* ptr = head;
-    cout<<"--------"<<endl;
-    for(int i=0;i<count;i++){
-        cout<<ptr->data<<endl;
-        ptr = ptr->next;
+    void ChainStack::Push(char element) {
+        char enter;
+        if (element == '0') {
+            cout << "Input to the stack:(enter 0 to end)" << endl;
+            do {
+                cin >> enter;
+                if (enter == '0') {
+                    return;
+                }
+                Node *ptr = new Node;
+                ptr->data = enter;
+                ptr->next = head;
+                head = ptr;
+                top = head;
+                //delete ptr;
+                count++;
+
+            } while (enter != '0');
+
+
+        }
     }
-    cout<<"--------"<<endl;
-}
 
-void ChainStack ::Pop() {
+    void ChainStack::ShowOutFromStack() {
+        Node *ptr = head;
+        cout << "--------" << endl;
+        for (int i = 0; i < count; i++) {
+            cout << ptr->data << endl;
+            ptr = ptr->next;
+        }
+        cout << "--------" << endl;
+    }
 
-    if(count==1){
+    void ChainStack::Pop() {
+
+        if (count == 1) {
+            delete top;
+            top = NULL;
+        }
+        head = head->next;
+        count--;
         delete top;
-        top=NULL;
+        top = head;
+
+
     }
-    head = head->next;
-    count--;
-    delete top;
-    top = head;
 
-
-
-}
-
-bool ChainStack ::JudgeFull() {
-    if(count==Maxlength){
-        return 1;
-    }else{
-        return 0;
+    bool ChainStack::JudgeFull() {
+        if (count == Maxlength) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-}
 
-bool ChainStack ::JudgeEmpty() {
-    if(top==NULL){
-        return 1;
-    } else{
-        return 0;
+    bool ChainStack::JudgeEmpty() {
+        if (top == NULL) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
-}
 
 

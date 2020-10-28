@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/yyq/CLionProjects/HomeWork/2ndClassWork/2nd-cw-2.cpp" "/Users/yyq/CLionProjects/HomeWork/cmake-build-debug/CMakeFiles/HomeWork.dir/2ndClassWork/2nd-cw-2.cpp.o"
+  "/Users/yyq/CLionProjects/HomeWork/classexp-1-Flight/classexp-1.cpp" "/Users/yyq/CLionProjects/HomeWork/cmake-build-debug/CMakeFiles/HomeWork.dir/classexp-1-Flight/classexp-1.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

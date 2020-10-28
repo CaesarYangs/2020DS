@@ -22,7 +22,7 @@ public:
 
 
 private:
-    int MAXSIZE;
+    int MAXSIZE=10;
     char *array;
     int top;
     char *character;
@@ -35,7 +35,7 @@ int main(){
 
     Symmetric s;
     s.Set();
-    cout<<s.Solve()<<endl;
+    cout<<"Result:"<<s.Solve()<<endl;
 
 
     return 0;
@@ -47,7 +47,7 @@ void Symmetric ::Set() {
     cin>>MAXSIZE;
     character = new char[MAXSIZE];
 
-    cout<<"Enter character:";
+    cout<<"Enter the character:";
 
     for(int i=0;i<MAXSIZE;i++){
         cin>>character[i];
@@ -65,23 +65,14 @@ void Symmetric ::Set() {
         }
     }
 
-
-    /*cout<<endl;
-    for(int i=0;i<MAXSIZE;i++){
-        cout<<character[i];
-    }
-    cout<<endl;*/
-
-
-
-}
+}   //将字符串转换为字符数组
 
 void Symmetric ::Push(char element) {
     if(top!=MAXSIZE-1)
         ++top;
         array[top] = element;
 
-}
+}   //压入栈
 
 char Symmetric ::Pop() {
     if(top==-1){
@@ -90,7 +81,7 @@ char Symmetric ::Pop() {
     int i = top;
     --top;
     return array[i];
-}
+}   //弹出栈
 
 
 void Symmetric ::ShowOutFromStack() {
@@ -122,4 +113,4 @@ bool Symmetric ::Solve() {
     }
 
     return true;
-}
+}   //判断是否回文
