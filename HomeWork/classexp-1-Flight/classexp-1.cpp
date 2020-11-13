@@ -134,6 +134,7 @@ void Book(Route&rs,Passenger&rp){
     if(rs.JudgeBuy(rs.UFindSN(flight),num)==1){
         rp.Book(name,id,num,flight);
         rs.ChangeNum(num,rs.UFindSN(flight));
+        cout<<"--Done"<<endl;
     } else{
         cout<<"***Can't operate due to the wrong flight or no ticket***"<<endl;
         return;
@@ -146,5 +147,6 @@ void Refound(Route&rs,Passenger&rp){
     int num;
     rp.Refund(flight,num);
     rs.ChangeNumplus(num,rs.UFindSN(flight));
+    cout<<"Refund Success"<<endl;
 
 }

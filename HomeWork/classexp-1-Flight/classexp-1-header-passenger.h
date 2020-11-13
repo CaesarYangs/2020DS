@@ -1,5 +1,5 @@
 //
-// Created by 杨业卿 on 2020/10/4.
+// Created by yyq on 2020/10/4.
 //
 
 #ifndef HOMEWORK_CLASSEXP_1_HEADER_PASSENGER_H
@@ -23,14 +23,14 @@ class Passenger{
 public:
     Passenger(){
         head = NULL;
-    }
-    void Book(string name,string id,int num,string flight);
-    void ShowPassenger();
-    void SinglePrint(PNode* ptr);
-    void Refund(string &flight,int &num);
-    void SaveToFile();
-    void LoadFromFIle();
-    PNode* FindSN();
+    }   //构造函数
+    void Book(string name,string id,int num,string flight); //订票购买函数
+    void ShowPassenger();   //显示乘客信息
+    void SinglePrint(PNode* ptr);   //单独打印
+    void Refund(string &flight,int &num);   //退款函数
+    void SaveToFile();  //保存到文件中
+    void LoadFromFIle();    //从文件读取
+    PNode* FindSN();    //根据特定序列号查找订单
     PNode* Pre(PNode* ptr){
         PNode* p = head;
         PNode* pre;
@@ -41,8 +41,8 @@ public:
             pre = p;
             p=p->next;
         }while (p!=NULL);
-    }
-    void Find();
+    }   //根据特定指针找到前驱节点地址
+    void Find();    //主查找函数
 
 private:
     PNode* head;
@@ -63,7 +63,7 @@ void Passenger ::Book(string name,string id,int num,string flight) {
 }
 
 void Passenger ::ShowPassenger() {
-    PNode* ptr = head->next;
+    PNode* ptr = head;
     if(head==NULL){
         cout<<"**NO Record**"<<endl;
         return;
@@ -168,6 +168,7 @@ PNode* Passenger ::FindSN() {
 
 void Passenger ::Find(){
     int marker=1;
+    int ju=0;
     string key;
     do{
         cout<<"*****************"<<endl;
@@ -188,9 +189,11 @@ void Passenger ::Find(){
                 do{
                     if(ptr->Name==key){
                         SinglePrint(ptr);
+                        return;
                     }
                     ptr = ptr->next;
                 }while (ptr->next != NULL);
+                ju++;
                 cout<<"##Can not find!##"<<endl;
                 break;
 
@@ -199,9 +202,11 @@ void Passenger ::Find(){
                 do{
                     if(ptr->ID==key){
                         SinglePrint(ptr);
+                        return;
                     }
                     ptr = ptr->next;
                 }while (ptr->next != NULL);
+                ju++;
                 cout<<"##Can not find!##"<<endl;
                 break;
 
@@ -210,6 +215,7 @@ void Passenger ::Find(){
                 do{
                     if(ptr->Flight==key){
                         SinglePrint(ptr);
+                        return;
                     }
                     ptr = ptr->next;
                 }while (ptr->next != NULL);

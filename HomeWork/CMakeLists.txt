@@ -3,4 +3,4 @@ project(HomeWork)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(HomeWork  classexp-1-Flight/classexp-1.cpp)
+add_executable(HomeWork  3rdClassWork/2.cpp)
