@@ -160,16 +160,17 @@ void Tree ::Thread(Noden *&p) {
         pre = p;
 
         Thread(p->rchild);
-        pre->rchild = root;
+        pre->lchild = root;
     }
+    
 }
 
 void Tree ::PringOrder(Noden *t) {
     Noden* p = t->lchild;
     while (p!=t){
-        /*if(p==NULL){
+        if(p==NULL){
             return;
-        }*/
+        }
         while (p->ltag==0){
             p=p->lchild;
             cout<<p->data;
@@ -184,6 +185,6 @@ void Tree ::PringOrder(Noden *t) {
 
 void Tree ::TP() {
     Thread(R->lchild);
-    PringOrder(R);
+    PringOrder(R->lchild);
     //cout<<"GI";
 }

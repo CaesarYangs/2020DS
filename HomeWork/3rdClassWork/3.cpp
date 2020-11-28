@@ -174,9 +174,9 @@ int Tree ::GetH(Noden* p) {
 
 int Tree ::GetNodeNum(Noden *p) {
     if(p==NULL){
-        return 0;
+        return 0;   //停止遍历 开始返回
     }
-    return 1+GetNodeNum(p->lchild)+GetNodeNum(p->rchild);
+    return 1+GetNodeNum(p->lchild)+GetNodeNum(p->rchild);   //返回+1并继续向下遍历
 
 }
 

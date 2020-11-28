@@ -31,7 +31,7 @@ public:
 
     void Encode();  //主编码函数
     void Decode();  //主解码函数 包含用户界面以及字符串输入处理
-    char Decode(string input);  //解码函数 主要用于解码算法实现
+    void Decode(string input);  //解码函数 主要用于解码算法实现
 
 
 private:
@@ -241,7 +241,10 @@ void HTree ::Encode() {
 
 }
 
-char HTree ::Decode(string input) {
+void HTree ::Decode(string input) {
+
+    string message;
+
     char codearray[50];
     int c_length = input.length();
     strcpy(codearray, input.c_str());
@@ -255,20 +258,23 @@ char HTree ::Decode(string input) {
     int j = totalnum;
 
 
-        for (int i = 0; i < c_length; i++) {
-            if (codearray[i] == '0') {
-                j = HN[j].lchild;
-            } else {
-                j = HN[j].rchild;
-            }
-
-            if (HN[j].lchild == 0 || HN[j].rchild == 0) {
-                // << HN[j].data;
-                return HN[j].data;
-            }
-
+    for (int i = 0; i < c_length; i++) {
+        if (codearray[i] == '0') {
+            j = HN[j].lchild;
+        } else {
+            j = HN[j].rchild;
         }
 
+        if (HN[j].lchild == 0 || HN[j].rchild == 0) {
+            // << HN[j].data;
+            message.push_back(HN[j].data);
+            //return HN[j].data;
+            j=totalnum;
+        }
+
+    }
+
+    cout<<"Decoded!"<<endl<<"message:"<<message<<endl;
 
 
 
@@ -278,15 +284,18 @@ void HTree ::Decode() {
 
     string message;
     string input;
-    do{
+    /*do{
         cin>>input;
         if(input=="exit"){
             break;
         }
         message.push_back(Decode(input));
-    }while (input!="exit");
+    }while (input!="exit");*/
 
-    cout<<"Decoded!"<<endl<<"message:"<<message<<endl;
+    cin>>input;
+    Decode(input);
+
+    //cout<<"Decoded!"<<endl<<"message:"<<message<<endl;
 
 
 }

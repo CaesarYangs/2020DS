@@ -203,20 +203,21 @@ void Tree ::PrintTree(Noden *p) {
 }
 
 void Tree ::PrintTreeII() {
-    Noden* p=root;
+    cout<<"非递归算法：";
+    Noden* p=root;  //根节点
 
     SeqStack sq;
     while (sq.JudgeEmpty()==0 || p!=NULL){
 
-        while (p!=NULL){
-            sq.Push(p);
-            p=p->lchild;
+        while (p!=NULL){    //不为空的时候
+            sq.Push(p); //入栈
+            p=p->lchild;    //继续向左遍历
         }
 
-        if(sq.JudgeEmpty()==0){
-            p = sq.Pop(p);
-            cout<<p->data;
-            p=p->rchild;
+        if(sq.JudgeEmpty()==0){ //栈不为空时
+            p = sq.Pop(p);  //弹出栈
+            cout<<p->data;  //打印数据
+            p=p->rchild;    //向右遍历
 
         }
     }
@@ -226,6 +227,7 @@ void Tree ::PrintTreeII() {
 
 
 void Tree ::Print() {
+    cout<<"递归算法：";
     PrintTree(root);
     cout<<endl;
 }   //递归算法
