@@ -143,32 +143,32 @@ HomeWork/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/build
 .PHONY : HomeWork/fast
 
-4thClassWork/2.o: 4thClassWork/2.cpp.o
+4thClassWork/3.o: 4thClassWork/3.cpp.o
 
-.PHONY : 4thClassWork/2.o
+.PHONY : 4thClassWork/3.o
 
 # target to build an object file
-4thClassWork/2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/2.cpp.o
-.PHONY : 4thClassWork/2.cpp.o
+4thClassWork/3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/3.cpp.o
+.PHONY : 4thClassWork/3.cpp.o
 
-4thClassWork/2.i: 4thClassWork/2.cpp.i
+4thClassWork/3.i: 4thClassWork/3.cpp.i
 
-.PHONY : 4thClassWork/2.i
+.PHONY : 4thClassWork/3.i
 
 # target to preprocess a source file
-4thClassWork/2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/2.cpp.i
-.PHONY : 4thClassWork/2.cpp.i
+4thClassWork/3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/3.cpp.i
+.PHONY : 4thClassWork/3.cpp.i
 
-4thClassWork/2.s: 4thClassWork/2.cpp.s
+4thClassWork/3.s: 4thClassWork/3.cpp.s
 
-.PHONY : 4thClassWork/2.s
+.PHONY : 4thClassWork/3.s
 
 # target to generate assembly for a file
-4thClassWork/2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/2.cpp.s
-.PHONY : 4thClassWork/2.cpp.s
+4thClassWork/3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HomeWork.dir/build.make CMakeFiles/HomeWork.dir/4thClassWork/3.cpp.s
+.PHONY : 4thClassWork/3.cpp.s
 
 # Help Target
 help:
@@ -179,9 +179,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... HomeWork"
-	@echo "... 4thClassWork/2.o"
-	@echo "... 4thClassWork/2.i"
-	@echo "... 4thClassWork/2.s"
+	@echo "... 4thClassWork/3.o"
+	@echo "... 4thClassWork/3.i"
+	@echo "... 4thClassWork/3.s"
 .PHONY : help
 
 
